@@ -1,0 +1,128 @@
+2014-10-08 22:04:17 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:04:20 INFO  ClassloadingTask:20 - Starts command: 'îôê1'.
+2014-10-08 22:04:23 INFO  ClassloadingTask:20 - Starts command: 'jar1'.
+2014-10-08 22:04:24 INFO  ClassloadingTask:20 - Starts command: '9'.
+2014-10-08 22:04:55 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:04:58 INFO  ClassloadingTask:20 - Starts command: 'jar2'.
+2014-10-08 22:04:59 INFO  ClassloadingTask:20 - Starts command: '8'.
+2014-10-08 22:05:06 INFO  ClassloadingTask:20 - Starts command: 'jar1'.
+2014-10-08 22:05:07 INFO  ClassloadingTask:20 - Starts command: '8'.
+2014-10-08 22:05:11 INFO  ClassloadingTask:20 - Starts command: '3'.
+2014-10-08 22:05:13 INFO  ClassloadingTask:20 - Starts command: '8'.
+2014-10-08 22:12:38 INFO  CustomClassloader:27 - Empty Class Loader is creating.
+2014-10-08 22:12:38 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:12:47 INFO  CustomClassloader:32 - New Jar file name D:\jar1.jar file.
+2014-10-08 22:12:47 INFO  ClassloadingTask:20 - Starts command: 'jar1'.
+2014-10-08 22:12:50 INFO  ClassloadingTask:20 - Starts command: '9'.
+2014-10-08 22:12:55 ERROR ClassloadingTask:44 - Incorrect number:jAR2
+2014-10-08 22:12:55 INFO  ClassloadingTask:20 - Starts command: 'jAR2'.
+2014-10-08 22:13:00 INFO  CustomClassloader:32 - New Jar file name D:\jar2.jar file.
+2014-10-08 22:13:00 INFO  ClassloadingTask:20 - Starts command: 'jar2'.
+2014-10-08 22:13:01 INFO  ClassloadingTask:20 - Starts command: '8'.
+2014-10-08 22:13:03 INFO  ClassloadingTask:20 - Starts command: '9'.
+2014-10-08 22:13:05 INFO  ClassloadingTask:20 - Starts command: '89'.
+2014-10-08 22:14:08 INFO  CustomClassloader:27 - Empty Class Loader is creating.
+2014-10-08 22:14:08 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:14:36 INFO  CustomClassloader:27 - Empty Class Loader is creating.
+2014-10-08 22:14:49 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:14:59 INFO  CustomClassloader:32 - New Jar file name D:\jar1.jar file.
+2014-10-08 22:14:59 INFO  ClassloadingTask:20 - Starts command: 'jar1'.
+2014-10-08 22:15:31 INFO  CustomClassloader:27 - Empty Class Loader is creating.
+2014-10-08 22:15:39 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:15:47 INFO  CustomClassloader:32 - New Jar file name D:\jar1.jar file.
+2014-10-08 22:16:19 INFO  ClassloadingTask:20 - Starts command: 'jar1'.
+2014-10-08 22:16:29 INFO  ClassloadingTask:20 - Starts command: '9'.
+2014-10-08 22:17:25 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:17:28 INFO  CustomClassloader:23 - Class loader was created for D:\jar2.jar file.
+2014-10-08 22:17:28 INFO  ClassloadingTask:20 - Starts command: 'jar2'.
+2014-10-08 22:17:30 INFO  ClassloadingTask:20 - Starts command: '9'.
+2014-10-08 22:17:34 INFO  ClassloadingTask:20 - Starts command: '8'.
+2014-10-08 22:20:56 INFO  CustomClassloader:27 - Empty Class Loader is creating.
+2014-10-08 22:20:56 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:21:09 INFO  CustomClassloader:27 - Empty Class Loader is creating.
+2014-10-08 22:21:09 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:21:22 INFO  CustomClassloader:27 - Empty Class Loader is creating.
+2014-10-08 22:21:22 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:21:41 INFO  CustomClassloader:27 - Empty Class Loader is creating.
+2014-10-08 22:21:41 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:21:45 INFO  CustomClassloader:32 - New Jar file name D:\jar2.jar file.
+2014-10-08 22:23:04 INFO  CustomClassloader:27 - Empty Class Loader is creating.
+2014-10-08 22:23:04 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:23:07 INFO  CustomClassloader:32 - New Jar file name D:\jar1.jar file.
+2014-10-08 22:23:29 INFO  CustomClassloader:27 - Empty Class Loader is creating.
+2014-10-08 22:23:29 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:23:32 INFO  CustomClassloader:32 - New Jar file name D:\jar2.jar file.
+2014-10-08 22:23:32 INFO  CustomClassloader:87 - Start loading of class data.
+2014-10-08 22:23:32 INFO  CustomClassloader:94 - End loading of class data.
+2014-10-08 22:23:32 ERROR CustomClassloader:69 - Class was not found.
+2014-10-08 22:25:18 INFO  CustomClassloader:27 - Empty Class Loader is creating.
+2014-10-08 22:25:18 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:25:21 INFO  CustomClassloader:32 - New Jar file name D:\jar2.jar file.
+2014-10-08 22:25:21 INFO  CustomClassloader:87 - Start loading of class data.
+2014-10-08 22:25:21 INFO  CustomClassloader:94 - End loading of class data.
+2014-10-08 22:25:21 ERROR CustomClassloader:69 - Class was not found.
+2014-10-08 22:27:39 INFO  CustomClassloader:27 - Empty Class Loader is creating.
+2014-10-08 22:27:39 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:27:41 INFO  CustomClassloader:32 - New Jar file name D:\jar2.jar file.
+2014-10-08 22:27:41 INFO  CustomClassloader:87 - Start loading of class data.
+2014-10-08 22:27:41 INFO  CustomClassloader:94 - End loading of class data.
+2014-10-08 22:27:41 INFO  CustomClassloader:73 - Added to classloader cache D:\jar2.jarFunctionality class.
+2014-10-08 22:27:41 INFO  ClassloadingTask:20 - Starts command: 'jar2'.
+2014-10-08 22:27:44 ERROR ClassloadingTask:44 - Incorrect number:
+2014-10-08 22:27:44 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:27:49 INFO  ClassloadingTask:20 - Starts command: '9'.
+2014-10-08 22:27:54 INFO  CustomClassloader:32 - New Jar file name D:\jar1.jar file.
+2014-10-08 22:27:54 INFO  ClassloadingTask:20 - Starts command: 'jar1'.
+2014-10-08 22:27:57 INFO  ClassloadingTask:20 - Starts command: '8'.
+2014-10-08 22:28:01 INFO  CustomClassloader:32 - New Jar file name D:\jar2.jar file.
+2014-10-08 22:28:01 INFO  ClassloadingTask:20 - Starts command: 'jar2'.
+2014-10-08 22:28:02 INFO  ClassloadingTask:20 - Starts command: '6'.
+2014-10-08 22:30:08 INFO  CustomClassloader:27 - Empty Class Loader is creating.
+2014-10-08 22:30:08 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:30:20 INFO  CustomClassloader:27 - Empty Class Loader is creating.
+2014-10-08 22:30:20 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:30:39 INFO  CustomClassloader:27 - Empty Class Loader is creating.
+2014-10-08 22:30:39 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:31:08 INFO  CustomClassloader:27 - Empty Class Loader is creating.
+2014-10-08 22:31:08 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:31:28 INFO  CustomClassloader:32 - New Jar file name D:\jar1.jar file.
+2014-10-08 22:31:28 INFO  CustomClassloader:87 - Start loading of class data.
+2014-10-08 22:31:28 INFO  CustomClassloader:94 - End loading of class data.
+2014-10-08 22:31:28 INFO  CustomClassloader:73 - Added to classloader cache D:\jar1.jarFunctionality class.
+2014-10-08 22:31:28 INFO  ClassloadingTask:20 - Starts command: 'jar1'.
+2014-10-08 22:31:31 INFO  ClassloadingTask:20 - Starts command: '9'.
+2014-10-08 22:32:50 ERROR ClassloadingTask:44 - Incorrect number:
+2014-10-08 22:32:50 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:32:53 INFO  CustomClassloader:32 - New Jar file name D:\jar2.jar file.
+2014-10-08 22:32:53 INFO  ClassloadingTask:20 - Starts command: 'jar2'.
+2014-10-08 22:32:55 INFO  ClassloadingTask:20 - Starts command: '8'.
+2014-10-08 22:35:37 INFO  CustomClassloader:27 - Empty Class Loader is creating.
+2014-10-08 22:35:37 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:35:40 INFO  CustomClassloader:32 - New Jar file name D:\jar2.jar file.
+2014-10-08 22:35:40 INFO  CustomClassloader:87 - Start loading of class data.
+2014-10-08 22:35:40 INFO  CustomClassloader:94 - End loading of class data.
+2014-10-08 22:35:40 ERROR CustomClassloader:69 - Class was not found.
+2014-10-08 22:41:32 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:41:56 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:42:42 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:42:57 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:44:37 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:45:07 INFO  ClassloadingTask:20 - Starts command: ''.
+2014-10-08 22:46:40 INFO  CustomClassloader:23 - Class loader was created for D:\jar1.jar file.
+2014-10-08 22:46:40 INFO  CustomClassloader:78 - Start loading of class data.
+2014-10-08 22:46:40 INFO  CustomClassloader:85 - End loading of class data.
+2014-10-08 22:46:40 INFO  CustomClassloader:64 - Added to classloader cache D:\jar1.jarFunctionality class.
+2014-10-08 22:46:40 INFO  ClassloadingTask:20 - Starts command: 'jar1'.
+2014-10-08 22:46:41 INFO  ClassloadingTask:20 - Starts command: '9'.
+2014-10-08 22:46:44 INFO  CustomClassloader:23 - Class loader was created for D:\jar2.jar file.
+2014-10-08 22:46:44 INFO  CustomClassloader:78 - Start loading of class data.
+2014-10-08 22:46:44 INFO  CustomClassloader:85 - End loading of class data.
+2014-10-08 22:46:44 INFO  CustomClassloader:64 - Added to classloader cache D:\jar2.jarFunctionality class.
+2014-10-08 22:46:44 INFO  ClassloadingTask:20 - Starts command: 'jar2'.
+2014-10-08 22:46:46 INFO  ClassloadingTask:20 - Starts command: '9'.
+2014-10-08 22:46:52 INFO  CustomClassloader:23 - Class loader was created for D:\jar1.jar file.
+2014-10-08 22:46:52 INFO  CustomClassloader:78 - Start loading of class data.
+2014-10-08 22:46:52 INFO  CustomClassloader:85 - End loading of class data.
+2014-10-08 22:46:52 INFO  CustomClassloader:64 - Added to classloader cache D:\jar1.jarFunctionality class.
+2014-10-08 22:46:52 INFO  ClassloadingTask:20 - Starts command: 'jar1'.
+2014-10-08 22:46:54 INFO  ClassloadingTask:20 - Starts command: '9'.
