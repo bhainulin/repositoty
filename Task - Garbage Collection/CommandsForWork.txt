@@ -1,0 +1,13 @@
+java -XX:+UseSerialGC -Xms6m -Xmx18m -XX:NewSize=2m -XX:MaxNewSize=2m -XX:PermSize=20m -XX:MaxPermSize=30m -classpath C:/Users/Veranika_Kulinkovich/Desktop/apache-log4j-1.2.17/log4j-1.2.17.jar;C:/Users/Veranika_Kulinkovich/Desktop/CDP/GarbageCollection/bin com/epam/gc/JavaApp
+
+java -XX:+UseParallelGC -Xms3m -Xmx12m -XX:NewSize=1m -XX:MaxNewSize=1m -XX:PermSize=20m -XX:MaxPermSize=20m -classpath C:/Users/Veranika_Kulinkovich/Desktop/apache-log4j-1.2.17/log4j-1.2.17.jar;C:/Users/Veranika_Kulinkovich/Desktop/CDP/GarbageCollection/bin com/epam/gc/JavaApp
+
+java -XX:+UseParallelOldGC -Xms9m -Xmx18m -XX:NewSize=3m -XX:MaxNewSize=3m -XX:PermSize=40m -XX:MaxPermSize=40m -classpath C:/Users/Veranika_Kulinkovich/Desktop/apache-log4j-1.2.17/log4j-1.2.17.jar;C:/Users/Veranika_Kulinkovich/Desktop/CDP/GarbageCollection/bin com/epam/gc/JavaApp
+
+java -XX:+UseConcMarkSweepGC -Xms6m -Xmx18m -XX:NewSize=2m -XX:MaxNewSize=2m -XX:PermSize=20m -XX:MaxPermSize=30m -classpath C:/Users/Veranika_Kulinkovich/Desktop/apache-log4j-1.2.17/log4j-1.2.17.jar;C:/Users/Veranika_Kulinkovich/Desktop/CDP/GarbageCollection/bin com/epam/gc/JavaApp
+
+java -XX:+UseConcMarkSweepGC -XX:ConcGCThreads=2 -Xms2m -Xmx18m -XX:NewSize=1m -XX:MaxNewSize=1m -XX:PermSize=24m -XX:MaxPermSize=36m -classpath C:/Users/Veranika_Kulinkovich/Desktop/apache-log4j-1.2.17/log4j-1.2.17.jar;C:/Users/Veranika_Kulinkovich/Desktop/CDP/GarbageCollection/bin com/epam/gc/JavaApp
+
+java -XX:+UseParallelGC -XX:ParallelGCThreads=2 -Xms4m -Xmx16m -XX:NewSize=3m -XX:MaxNewSize=3m -XX:PermSize=24m -XX:MaxPermSize=32m -classpath C:/Users/Veranika_Kulinkovich/Desktop/apache-log4j-1.2.17/log4j-1.2.17.jar;C:/Users/Veranika_Kulinkovich/Desktop/CDP/GarbageCollection/bin com/epam/gc/JavaApp
+
+java -XX:+UseG1GC -Xms4m -Xmx16m -XX:NewSize=2m -XX:MaxNewSize=2m -XX:PermSize=12m -XX:MaxPermSize=18m -classpath C:/Users/Veranika_Kulinkovich/Desktop/apache-log4j-1.2.17/log4j-1.2.17.jar;C:/Users/Veranika_Kulinkovich/Desktop/CDP/GarbageCollection/bin com/epam/gc/JavaApp
