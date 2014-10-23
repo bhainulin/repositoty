@@ -1,0 +1,11 @@
+Task 1
+
+-Xss2M -Xms1024M -Xmx1024M -XX:SurvivorRatio=2 -XX:NewRatio=3
+
+Task 2
+
+-Xss1M -Xms384M -Xmx384M -XX:SurvivorRatio=1 -XX:NewRatio=2
+
+Task 3
+
+-XX:MaxPermSize=1m -Xmx10m
