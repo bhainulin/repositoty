@@ -25,6 +25,9 @@ public class JavaApp {
 		}
 	}
 
+	//Данный метод инициирует OutOfMemoryError из-за переполнения Хипа.
+	//В данном методе происходит построчное чтение файла, размер которого больше,
+	//чем размер Heap.
 	private static void initiateOutOfHeapMemory() throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader(
 				"D:\\Task6.txt"));
@@ -35,6 +38,9 @@ public class JavaApp {
 		}
 	}
 	
+	//В данном методе инициируется StackOverflowError. Это происходит из-за того,
+	//создается объект класса A, который содержит в себе свойство, типа A, которое
+	//пытается создаться во время создания объекта.
 	private static void initiateStakOverflow() throws IOException {
 		A a = new A();
 		a.toString();
