@@ -6,7 +6,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.Set;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.DelayQueue;
+import java.util.concurrent.TimeUnit;
 
+import com.epam.task.server.thread.Command;
 import com.epam.task.server.thread.MyThread;
 
 public class Server {
@@ -20,37 +24,51 @@ public class Server {
 	public static void main(String[] args) throws IOException,
 			InterruptedException {
 		Server server = new Server();
+		BlockingQueue<Command> commands = new DelayQueue<Command>();
+		Thread.sleep(10000);
 		while (true) {
-			String[] command = server.getCommand();
-			Thread thread = new Thread(new MyThread(command[0], command[1]));
-			thread.start();
-			System.out.println(thread.getName() + " is started.");
-			System.out.println(Thread.getAllStackTraces().size() + " is running.");
+			Command command = server.getCommand();
+			if (command != null) {
+				commands.offer(command);
+				System.out.println("Put command.");
+			}
+
+			Command readyToExecute = commands.poll(100, TimeUnit.MILLISECONDS);
+
+			if (readyToExecute != null) {
+				System.out.println("Gets command.");
+				Thread thread = new Thread(new MyThread(readyToExecute));
+				thread.start();
+				System.out.println(thread.getName() + " is started.");
+				System.out.println(Thread.getAllStackTraces().size()
+						+ " is running.");
+			}
 		}
 	}
 
-	public String[] getCommand() throws InterruptedException, IOException {
+	public Command getCommand() throws InterruptedException, IOException {
 		String result = null;
 		Object key = null;
-		while (result == null) {
-			if (!isLocked(COMMAND_FILE_LOCK)) {
-				Thread.sleep(100);
-				File lockFile = null;
-				try {
-					lockFile = createLockFile(COMMAND_FILE_LOCK);
+		if (!isLocked(COMMAND_FILE_LOCK)) {
+			Thread.sleep(100);
+			File lockFile = null;
+			try {
+				lockFile = createLockFile(COMMAND_FILE_LOCK);
 
-					Properties properties = readFromFile(COMMAND_FILE);
-					if (properties.size() > 0) {
-						key = getElementKey(properties);
-						result = (String) properties.remove(key);
-						writeToFile(COMMAND_FILE, properties);
-					}
-				} finally {
-					deleteLockFile(lockFile);
+				Properties properties = readFromFile(COMMAND_FILE);
+				if (properties.size() > 0) {
+					key = getElementKey(properties);
+					result = (String) properties.remove(key);
+					writeToFile(COMMAND_FILE, properties);
 				}
+			} finally {
+				deleteLockFile(lockFile);
 			}
 		}
-		return new String[] { key.toString(), result };
+		if(result == null || key == null){
+			return null;
+		}
+		return new Command(key.toString(), result, 2000);
 	}
 
 	private Object getElementKey(Properties properties) {
@@ -61,9 +79,9 @@ public class Server {
 		return null;
 	}
 
-	private Properties readFromFile(String fileName) throws IOException {
+	private Properties readFromFile(String fileName) throws IOException,
+			InterruptedException {
 		FileInputStream in = null;
-
 		try {
 			Properties properties = new Properties();
 			in = new FileInputStream(fileName);

@@ -5,23 +5,18 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
 import com.epam.task.server.util.ServerUtils;
 
 public class MyThread implements Runnable {
 
-	private String name;
+	private Command command;
 
-	public MyThread(String name, String command) {
+	public MyThread(Command command) {
 		super();
-		this.name = name;
 		this.command = command;
 	}
-
-	private String command;
-	private String result;
 
 	private static ReentrantLock LOCK = new ReentrantLock();
 
@@ -29,75 +24,77 @@ public class MyThread implements Runnable {
 	public static final String RESULT_FILE = "D:\\Results.txt";
 	public static final String RESULT_FILE_LOCK = "D:\\Results.lock";
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getCommand() {
-		return command;
-	}
-
-	public void setCommand(String command) {
-		this.command = command;
-	}
-
-	public String getResult() {
-		return result;
-	}
-
-	public void setResult(String result) {
-		this.result = result;
-	}
-
 	@Override
 	public void run() {
 		System.out.println(Thread.currentThread().getName() + " runs.");
-		
-			if (LOCK.tryLock()) {
-				System.out.println(Thread.currentThread().getName() + " is not locked.");
-				System.out.println(Thread.currentThread().getName() + " Lock.");
-				try {
-					System.out.println(Thread.currentThread().getName() + " getInfoProperties start");
-					Properties properties = getInfoProperties();
-					System.out.println(Thread.currentThread().getName() + " getInfoProperties end");
-					String capacityStr = properties.getProperty(name);
-					if (capacityStr == null) {
-						result = "No such account";
-					} else {
-						System.out.println(Thread.currentThread().getName() + " countResult start");
-						countResult(capacityStr);
-						System.out.println(Thread.currentThread().getName() + " countResult end");
-						properties.put(name, result);
-						System.out.println(Thread.currentThread().getName() + " writeInfoProperties start");
-						writeInfoProperties(properties);
-						System.out.println(Thread.currentThread().getName() + " writeInfoProperties end");
-					}
-					System.out.println(Thread.currentThread().getName() + " writeResult start");
-					writeResult(name, result);
-					System.out.println(Thread.currentThread().getName() + " writeResult end");
-				} catch (Exception e) {
-					System.out.println(e);
-				} finally {
-					System.out.println(Thread.currentThread().getName() + " is ended.");
-					LOCK.unlock();
-					System.out.println(Thread.currentThread().getName() + " lock is free.");
+
+		if (LOCK.tryLock()) {
+			System.out.println(Thread.currentThread().getName()
+					+ " is not locked.");
+			System.out.println(Thread.currentThread().getName() + " Lock.");
+			try {
+				System.out.println(Thread.currentThread().getName()
+						+ " getInfoProperties start");
+				Properties properties = getInfoProperties();
+				System.out.println(Thread.currentThread().getName()
+						+ " getInfoProperties end");
+				String capacityStr = properties.getProperty(command.getName());
+				if (capacityStr == null) {
+					command.setResult("No such account");
+				} else {
+					System.out.println(Thread.currentThread().getName()
+							+ " countResult start");
+					countResult(capacityStr);
+					System.out.println(Thread.currentThread().getName()
+							+ " countResult end");
+					properties.put(command.getName(), command.getResult());
+					System.out.println(Thread.currentThread().getName()
+							+ " writeInfoProperties start");
+					writeInfoProperties(properties, command.getResult());
+					System.out.println(Thread.currentThread().getName()
+							+ " writeInfoProperties end");
 				}
+				System.out.println(Thread.currentThread().getName()
+						+ " writeResult start");
+				writeResult(command.getName(), command.getResult());
+				System.out.println(Thread.currentThread().getName()
+						+ " writeResult end");
+			} catch (Exception e) {
+				System.out.println(e);
+			} finally {
+				System.out.println(Thread.currentThread().getName()
+						+ " is ended.");
+				LOCK.unlock();
+				System.out.println(Thread.currentThread().getName()
+						+ " lock is free.");
 			}
+		}
 		System.out.println(Thread.currentThread().getName() + " ends.");
+	}
+
+	public Command getCommand() {
+		return command;
+	}
+
+	public void setCommand(Command command) {
+		this.command = command;
 	}
 
 	private void countResult(String capacityStr) {
 		Integer capacity = Integer.parseInt(capacityStr);
-		Integer commandInt = Integer.parseInt(command);
+		Integer commandInt = Integer.parseInt(command.getCommand());
 		Integer resultInt = capacity - commandInt;
-		result = resultInt.toString();
+		if (resultInt < 0) {
+			command.setResult("No more money!");
+		} else {
+			command.setResult(resultInt.toString());
+		}
 	}
 
-	private void writeInfoProperties(Properties properties) throws IOException {
+	private void writeInfoProperties(Properties properties, String result) throws IOException {
+		if("No more money!".equals(result)){
+			return;
+		}
 		FileOutputStream fileOutputStream = null;
 		try {
 			fileOutputStream = new FileOutputStream(INFO_FILE);
@@ -125,6 +122,7 @@ public class MyThread implements Runnable {
 
 	public void writeResult(String name, String value)
 			throws InterruptedException, IOException {
+		//if("No more money!" "No such account")
 		while (ServerUtils.isLocked(RESULT_FILE_LOCK)) {
 			Thread.sleep(100);
 		}
