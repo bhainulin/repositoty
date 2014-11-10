@@ -37,22 +37,35 @@ public class Client {
 		Integer i = -1;
 
 		Scanner scanner = new Scanner(System.in);
+		//reads console name
 		System.out.println("Input name:");
 		String name = scanner.next();
-
+		client.setName(name);
 		System.out.println("Input numbers:");
 
 		while (i != 0) {
+			//reads command number
 			i = scanner.nextInt();
-			client.setName(name);
+			//writes command to Commands.txt
 			client.writeCommand(i);
+			long startWait = System.currentTimeMillis();
+			
+			//gets the result of execution
 			String result = client.getResult();
+			
+			long endWait = System.currentTimeMillis();
 			System.out.println("Result:" + result);
+			System.out.println("Waited for Result: " + (endWait - startWait) + "ms.");
 
 		}
 	}
 
-	
+	/**
+	 * Reads result by name from Results.txt file. If file was locked waits 1000ms. Then remove result from file.
+	 * @return result.
+	 * @throws InterruptedException
+	 * @throws IOException
+	 */
 	public String getResult() throws InterruptedException, IOException {
 		String result = null;
 		while (result == null) {
@@ -75,6 +88,12 @@ public class Client {
 		return result;
 	}
 
+	/**
+	 * Writes command to Commands.txt file. If file was locked sleep for 1000 ms and then tries again.
+	 * @param value - command value.
+	 * @throws InterruptedException
+	 * @throws IOException
+	 */
 	public void writeCommand(Integer value) throws InterruptedException,
 			IOException {
 		while (isLocked(COMMAND_FILE_LOCK)) {
@@ -93,6 +112,12 @@ public class Client {
 		}
 	}
 
+	/**
+	 * Reads properties from property file.
+	 * @param fileName - name of property file.
+	 * @return properties
+	 * @throws IOException
+	 */
 	private Properties readFromFile(String fileName) throws IOException {
 		FileInputStream in = null;
 
@@ -108,6 +133,12 @@ public class Client {
 		}
 	}
 
+	/**
+	 * Writes properties to property file.
+	 * @param fileName - file name.
+	 * @param properties - properties to write.
+	 * @throws IOException
+	 */
 	private void writeToFile(String fileName, Properties properties)
 			throws IOException {
 		FileOutputStream out = null;
@@ -122,16 +153,32 @@ public class Client {
 		}
 	}
 
+	/**
+	 * Creates lock file.
+	 * @param lockFileName -name of lock file.
+	 * @return
+	 * @throws IOException
+	 */
 	public File createLockFile(String lockFileName) throws IOException {
 		File lockFile = new File(lockFileName);
 		lockFile.createNewFile();
 		return lockFile;
 	}
 
+	/**
+	 * Deletes lock file.
+	 * @param file - instance of lock file.
+	 * @throws IOException
+	 */
 	public void deleteLockFile(File file) throws IOException {
 		file.delete();
 	}
 
+	/**
+	 * Checks if file was locked.
+	 * @param lockFileName - name of lock file
+	 * @return
+	 */
 	public boolean isLocked(String lockFileName) {
 		File file = new File(lockFileName);
 		return file.exists();

@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.epam.task.server.thread.Command;
 import com.epam.task.server.thread.MyThread;
+import com.epam.task.server.util.ServerUtils;
 
 public class Server {
 	public static final String COMMAND_FILE = "D:\\Commands.txt";
@@ -20,21 +21,29 @@ public class Server {
 	public static final String RESULT_FILE_LOCK = "D:\\Results.lock";
 
 	public static final String INFO_FILE = "D:\\Info.txt";
+	
+	public static final long COMMAND_DELAY = 6000;
+	public static final long READ_DELAY = 3000;
 
 	public static void main(String[] args) throws IOException,
 			InterruptedException {
 		Server server = new Server();
 		BlockingQueue<Command> commands = new DelayQueue<Command>();
+		//waiting for few consoles
 		Thread.sleep(10000);
 		while (true) {
+			//gets command from a file
 			Command command = server.getCommand();
 			if (command != null) {
+				//puts command to an queue
 				commands.offer(command);
 				System.out.println("Put command.");
 			}
+			
+			//tries to read command from a file
+			Command readyToExecute = commands.poll(READ_DELAY, TimeUnit.MILLISECONDS);
 
-			Command readyToExecute = commands.poll(100, TimeUnit.MILLISECONDS);
-
+			//if command was read start new thread for an executing
 			if (readyToExecute != null) {
 				System.out.println("Gets command.");
 				Thread thread = new Thread(new MyThread(readyToExecute));
@@ -46,14 +55,20 @@ public class Server {
 		}
 	}
 
+	/**
+	 * Reads command from Commands.txt. If file was locked sleep for 100ms. If file was not locked - lock it and remove command from file.
+	 * @return
+	 * @throws InterruptedException
+	 * @throws IOException
+	 */
 	public Command getCommand() throws InterruptedException, IOException {
 		String result = null;
 		Object key = null;
-		if (!isLocked(COMMAND_FILE_LOCK)) {
+		if (!ServerUtils.isLocked(COMMAND_FILE_LOCK)) {
 			Thread.sleep(100);
 			File lockFile = null;
 			try {
-				lockFile = createLockFile(COMMAND_FILE_LOCK);
+				lockFile = ServerUtils.createLockFile(COMMAND_FILE_LOCK);
 
 				Properties properties = readFromFile(COMMAND_FILE);
 				if (properties.size() > 0) {
@@ -62,15 +77,18 @@ public class Server {
 					writeToFile(COMMAND_FILE, properties);
 				}
 			} finally {
-				deleteLockFile(lockFile);
+				ServerUtils.deleteLockFile(lockFile);
 			}
 		}
 		if(result == null || key == null){
 			return null;
 		}
-		return new Command(key.toString(), result, 2000);
+		return new Command(key.toString(), result, COMMAND_DELAY);
 	}
 
+	/**
+	 * gets first element from property.
+	 */
 	private Object getElementKey(Properties properties) {
 		Set<Object> keys = properties.keySet();
 		for (Object key : keys) {
@@ -79,6 +97,13 @@ public class Server {
 		return null;
 	}
 
+	/**
+	 * Reads properties from file.
+	 * @param fileName - name of a file.
+	 * @return properties
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
 	private Properties readFromFile(String fileName) throws IOException,
 			InterruptedException {
 		FileInputStream in = null;
@@ -94,6 +119,12 @@ public class Server {
 		}
 	}
 
+	/**
+	 * Writes properties to file
+	 * @param fileName - name of a file
+	 * @param properties - properties to write
+	 * @throws IOException
+	 */
 	private void writeToFile(String fileName, Properties properties)
 			throws IOException {
 		FileOutputStream out = null;
@@ -106,20 +137,5 @@ public class Server {
 				out.close();
 			}
 		}
-	}
-
-	public File createLockFile(String lockFileName) throws IOException {
-		File lockFile = new File(lockFileName);
-		lockFile.createNewFile();
-		return lockFile;
-	}
-
-	public void deleteLockFile(File file) throws IOException {
-		file.delete();
-	}
-
-	public boolean isLocked(String lockFileName) {
-		File file = new File(lockFileName);
-		return file.exists();
 	}
 }
