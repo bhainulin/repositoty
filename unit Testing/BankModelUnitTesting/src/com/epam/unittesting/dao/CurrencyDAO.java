@@ -12,6 +12,10 @@ public class CurrencyDAO extends BankSystemDAO<Currency>{
 		super(connection);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public CurrencyDAO() throws SQLException {
+		super(MySqlDAOFactory.getInstance().getConnection());
+	}
 
 	@Override
 	public String getTableName() {

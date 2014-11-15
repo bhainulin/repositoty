@@ -23,6 +23,10 @@ public abstract class BankSystemDAO<T extends BankObject> implements IDAO<T>{
 	public BankSystemDAO(Connection connection) {
 		this.connection = connection;
 	}
+	
+	/*public BankSystemDAO() {
+		super();
+	}*/
 
 	public abstract String getTableName();
 

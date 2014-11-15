@@ -1,30 +1,12 @@
 package com.epam.unittesting.model;
 
-import java.util.HashSet;
-import java.util.Set;
 
-
-public class Bank extends BankObject{
+public class Bank extends BankObject {
 
 	public static final String BANK_NAME = "name";
 	public static final String BANK_STREET = "street";
 	public static final String BANK_BUILDING = "building";
 	public static final String BANK_OFFICE = "office";
-	
-	
-	private static final Set<String> PROPERTY_SET;
-	
-	static{
-		PROPERTY_SET = new HashSet<>();
-		
-		PROPERTY_SET.add(OBJECT_ID);
-		PROPERTY_SET.add(BANK_NAME);
-		PROPERTY_SET.add(CITY);
-		PROPERTY_SET.add(BANK_STREET);
-		PROPERTY_SET.add(BANK_BUILDING);
-		PROPERTY_SET.add(BANK_OFFICE);
-		PROPERTY_SET.add(PHONE);
-	}
 
 	public Bank(Integer id, String name, String city, String street,
 			Integer building) {
@@ -134,10 +116,6 @@ public class Bank extends BankObject{
 						.getOffice().equals(other.getOffice()))
 				&& ((this.getPhone() == null && other == null) || (this
 						.getPhone().equals(other.getPhone())));
-	}
-	
-	public static boolean hasProperty(String propertyName){
-		return PROPERTY_SET.contains(propertyName);
 	}
 
 }

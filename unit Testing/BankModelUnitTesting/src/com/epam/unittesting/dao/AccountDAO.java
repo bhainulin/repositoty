@@ -10,7 +10,10 @@ public class AccountDAO extends BankSystemDAO<Account>{
 
 	public AccountDAO(Connection connection) {
 		super(connection);
-		// TODO Auto-generated constructor stub
+	}
+	
+	public AccountDAO() throws SQLException {
+		super(MySqlDAOFactory.getInstance().getConnection());
 	}
 
 	@Override
