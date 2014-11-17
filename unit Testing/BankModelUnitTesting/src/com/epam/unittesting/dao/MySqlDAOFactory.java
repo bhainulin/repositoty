@@ -6,10 +6,12 @@ import java.sql.SQLException;
 
 public class MySqlDAOFactory implements DAOFactory {
 
-	private String user = "root";
-	private String password = "12345";
-	private String url = "jdbc:mysql://localhost:3306/test";
-	private String driver = "com.mysql.jdbc.Driver";
+	private static String user = "root";
+	private static String password = "12345";
+	private static String url = "jdbc:mysql://localhost:3306/test";
+	private static String driver = "com.mysql.jdbc.Driver";
+	
+	private static MySqlDAOFactory instance;
 
 	public MySqlDAOFactory() {
 		try {
@@ -23,5 +25,12 @@ public class MySqlDAOFactory implements DAOFactory {
 	public Connection getConnection() throws SQLException {
 		return DriverManager.getConnection(url, user, password);
 	}
-
+	
+	public static MySqlDAOFactory getInstance(){
+		if(instance == null){
+			instance = new MySqlDAOFactory();
+		}
+		return instance;
+	}
+	
 }

@@ -1,5 +1,6 @@
 package com.epam.unittesting.model;
 
+
 public class Person extends BankObject {
 
 	public static final String NICK_NAME = "nick";
@@ -13,8 +14,9 @@ public class Person extends BankObject {
 		properties.put(FIRST_NAME, firstName);
 		properties.put(LAST_NAME, lastName);
 	}
-	
-	public Person(Integer id, String nickName, String firstName, String lastName, String city, String phone) {
+
+	public Person(Integer id, String nickName, String firstName,
+			String lastName, String city, String phone) {
 		this(id, nickName, firstName, lastName);
 		properties.put(PHONE, phone);
 		properties.put(CITY, city);
@@ -64,8 +66,8 @@ public class Person extends BankObject {
 	public String toString() {
 		return "Person [getId()=" + getId() + ", getNickName()="
 				+ getNickName() + ", getFirstName()=" + getFirstName()
-				+ ",getLastName()=" + getLastName() + ", getCity()=" + getCity()
-				+ ",getPhone()=" + getPhone() + "]";
+				+ ",getLastName()=" + getLastName() + ", getCity()="
+				+ getCity() + ",getPhone()=" + getPhone() + "]";
 	}
 
 	@Override

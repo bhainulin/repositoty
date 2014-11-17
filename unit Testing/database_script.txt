@@ -1,0 +1,113 @@
+CREATE SCHEMA `bankmodel` ;
+
+CREATE TABLE `test`.`tblbank` (
+  
+`id` INT NOT NULL AUTO_INCREMENT,
+  
+`name` VARCHAR(100) NOT NULL,
+  
+`city` VARCHAR(45) NOT NULL,
+  
+`street` VARCHAR(45) NOT NULL,
+  
+`building` INT NOT NULL,
+  
+`office` INT NULL,
+  
+`phone` VARCHAR(45) NULL,
+  
+`deleted` BIT(1) NOT NULL DEFAULT 0,
+  
+PRIMARY KEY (`id`),
+  
+UNIQUE INDEX `id_UNIQUE` (`id` ASC));
+
+CREATE TABLE `test`.`tblcurrency` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `bankId` INT NOT NULL,
+  `from` VARCHAR(10) NOT NULL,
+  `to` VARCHAR(10) NOT NULL,
+  `cost` DOUBLE NOT NULL,
+  `deleted` BIT(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  INDEX `bank_Id_index` (`bankId` ASC),
+  UNIQUE INDEX `currency_Codt_unique` (`bankId` ASC, `from` ASC, `to` ASC),
+  CONSTRAINT `bank_currency`
+    FOREIGN KEY (`bankId`)
+    REFERENCES `test`.`tblbank` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `test`.`tblperson` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nickname` VARCHAR(45) NOT NULL,
+  `firstname` VARCHAR(45) NOT NULL,
+  `lastname` VARCHAR(45) NOT NULL,
+  `city` VARCHAR(45) NULL,
+  `phone` VARCHAR(45) NULL,
+  `deleted` BIT(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `nickname_UNIQUE` (`nickname` ASC));
+
+
+CREATE TABLE `test`.`tblaccount` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `personId` INT NOT NULL,
+  `bankId` INT NOT NULL,
+  `currency` VARCHAR(10) NOT NULL,
+  `amount` DOUBLE NOT NULL DEFAULT 0,
+  `deleted` BIT(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  INDEX `bank_index` (`bankId` ASC),
+  INDEX `person_index` (`personId` ASC),
+  CONSTRAINT `account_bank`
+    FOREIGN KEY (`bankId`)
+    REFERENCES `test`.`tblbank` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `account_person`
+    FOREIGN KEY (`personId`)
+    REFERENCES `test`.`tblperson` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+inserts
+
+
+INSERT INTO `test`.`tblbank` (`name`, `city`, `street`, `building`, `phone`) VALUES ('Priorbank', 'Minsk', 'Lobanka', '97', '1133');
+INSERT INTO `test`.`tblbank` (`name`, `city`, `street`, `building`, `office`, `phone`) VALUES ('Belarusbank', 'Minsk', 'Kalvariyskaya', '15', '22', '1133');
+
+
+INSERT INTO `test`.`tblperson` (`nickname`, `firstname`, `lastname`) VALUES ('First', 'Oleg', 'Peters');
+INSERT INTO `test`.`tblperson` (`nickname`, `firstname`, `lastname`, `city`) VALUES ('Second', 'Peter', 'Cursov', 'Minsk');
+INSERT INTO `test`.`tblperson` (`nickname`, `firstname`, `lastname`, `city`, `phone`) VALUES ('Third', 'Ivan', 'Ivanov', 'Minsk', '+3659867877');
+
+INSERT INTO `test`.`tblcurrency` (`bankId`, `from`, `to`, `cost`) VALUES ('1', 'BYR', 'USD', '11000');
+INSERT INTO `test`.`tblcurrency` (`bankId`, `from`, `to`, `cost`) VALUES ('1', 'USD', 'BYR','0.000091');
+INSERT INTO `test`.`tblcurrency` (`bankId`, `from`, `to`, `cost`) VALUES ('1', 'BYR', 'EUR', '14000');
+INSERT INTO `test`.`tblcurrency` (`bankId`, `from`, `to`, `cost`) VALUES ('1', 'EUR', 'BYR','0.0000714');
+INSERT INTO `test`.`tblcurrency` (`bankId`, `from`, `to`, `cost`) VALUES ('2', 'BYR', 'USD', '10500');
+INSERT INTO `test`.`tblcurrency` (`bankId`, `from`, `to`, `cost`) VALUES ('2', 'USD', 'BYR','0.000092');
+INSERT INTO `test`.`tblcurrency` (`bankId`, `from`, `to`, `cost`) VALUES ('2', 'BYR', 'EUR', '13900');
+INSERT INTO `test`.`tblcurrency` (`bankId`, `from`, `to`, `cost`) VALUES ('2', 'EUR', 'BYR','0.000072');
+INSERT INTO `test`.`tblcurrency` (`bankId`, `from`, `to`, `cost`) VALUES ('2', 'BYR', 'RUR', '400');
+INSERT INTO `test`.`tblcurrency` (`bankId`, `from`, `to`, `cost`) VALUES ('2', 'RUR', 'BYR','0.0025');
+
+
+INSERT INTO `test`.`tblaccount` (`personId`, `bankId`, `currency`, `amount`) VALUES ('1', '1', 'USD', '1000');
+
+INSERT INTO `test`.`tblaccount` (`personId`, `bankId`, `currency`, `amount`) VALUES ('2', '1', 'BYR', '20000000');
+
+INSERT INTO `test`.`tblaccount` (`personId`, `bankId`, `currency`, `amount`) VALUES ('2', '1', 'EUR', '1500');
+
+INSERT INTO `test`.`tblaccount` (`personId`, `bankId`, `currency`, `amount`) VALUES ('3', '2', 'BYR', '25000000');
+
+INSERT INTO `test`.`tblaccount` (`personId`, `bankId`, `currency`, `amount`) VALUES ('3', '2', 'EUR', '2500');
+
+INSERT INTO `test`.`tblaccount` (`personId`, `bankId`, `currency`, `amount`) VALUES ('3', '2', 'USD', '1000');
+
+INSERT INTO `test`.`tblaccount` (`personId`, `bankId`, `currency`, `amount`) VALUES ('3', '2', 'RUR', '300000');
+
+
+

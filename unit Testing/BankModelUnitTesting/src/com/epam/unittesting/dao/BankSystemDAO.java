@@ -7,17 +7,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.epam.unittesting.model.Bank;
 import com.epam.unittesting.model.BankObject;
 
-public abstract class BankSystemDAO<T extends BankObject> implements IDAO<T>{
+public abstract class BankSystemDAO<T extends BankObject> implements IDAO<T> {
 
 	public static String GET_ALL_ELEMENTS = "select * from %s where deleted=0";
 	public static String GET_ELEMENT = "select * from %s where id=?";
 	public static String UPDATE_ELEMENT = "update %s set %s where id=? and deleted=0";
 	public static String DELETE_ELEMENT = "update %s set deleted=1 where id=?";
-	
-	
+
 	private final Connection connection;
 
 	public BankSystemDAO(Connection connection) {
@@ -37,7 +35,7 @@ public abstract class BankSystemDAO<T extends BankObject> implements IDAO<T>{
 		}
 		return list;
 	}
-	
+
 	public T get(Integer key) throws SQLException {
 		String sqlString = String.format(GET_ELEMENT, getTableName());
 		PreparedStatement sql = connection.prepareStatement(sqlString);
@@ -49,22 +47,22 @@ public abstract class BankSystemDAO<T extends BankObject> implements IDAO<T>{
 		}
 		return object;
 	}
-	
-	public void update(T object) throws SQLException{
-		String sqlString = String.format(UPDATE_ELEMENT, getTableName(), getUpdateQuery(object));
+
+	public void update(T object) throws SQLException {
+		String sqlString = String.format(UPDATE_ELEMENT, getTableName(),
+				getUpdateQuery(object));
 		PreparedStatement sql = connection.prepareStatement(sqlString);
-		sql.setInt(1,object.getId());
+		sql.setInt(1, object.getId());
 		sql.executeUpdate();
 	}
-	
-	
+
 	@Override
 	public void delete(Integer key) throws SQLException {
 		String sqlString = String.format(DELETE_ELEMENT, getTableName());
 		PreparedStatement sql = connection.prepareStatement(sqlString);
-		sql.setInt(1,key);
+		sql.setInt(1, key);
 		sql.executeUpdate();
-		
+
 	}
 
 	@Override
@@ -73,10 +71,10 @@ public abstract class BankSystemDAO<T extends BankObject> implements IDAO<T>{
 		PreparedStatement sql = connection.prepareStatement(sqlString);
 		sql.executeUpdate();
 	}
-	
+
 	public abstract T createObject(ResultSet resultSet) throws SQLException;
 
 	public abstract String getUpdateQuery(T object) throws SQLException;
-	
+
 	public abstract String getAddQuery(T object) throws SQLException;
 }

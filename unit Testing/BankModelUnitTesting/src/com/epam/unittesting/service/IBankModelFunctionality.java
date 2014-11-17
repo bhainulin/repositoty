@@ -4,13 +4,13 @@ import java.util.List;
 
 import com.epam.unittesting.model.BankObject;
 
-public interface IBankModelFunctionality {
+public interface IBankModelFunctionality<T extends BankObject> {
 	
-	public List<BankObject> order(String property);
+	public List<T> order(String property, int order);
 	
-	public List<BankObject> getAll();
+	public List<T> getAll();
 	
-	public BankObject get(Integer key);
+	public T get(Integer key);
 	
-	public List<BankObject> search(String propertyName, String value);
+	public List<T> search(String propertyName, Object value);
 }

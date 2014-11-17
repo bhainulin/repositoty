@@ -2,10 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="C:/Users/Veranika_Kulinkovich/Dropbox/CDP/com.mysql.jdbc_5.1.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Veranika_Kulinkovich/Dropbox/CDP/junit-4.11-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Veranika_Kulinkovich/Dropbox/CDP/mockito-1.9.5/mockito-all-1.9.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Veranika_Kulinkovich/Dropbox/CDP/junit-4.11.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Veranika_Kulinkovich/Dropbox/CDP/jukito-1.1/jukito-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Veranika_Kulinkovich/Dropbox/CDP/junit-4.11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Veranika_Kulinkovich/Dropbox/CDP/mockito-1.9.5/mockito-all-1.9.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Veranika_Kulinkovich/Dropbox/CDP/com.mysql.jdbc_5.1.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
