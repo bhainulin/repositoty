@@ -1,1 +1,0 @@
-{"JBAS014653: Composite operation failed and was rolled back. Steps that failed:" => {"Operation step-2" => {"JBAS014771: Services with missing/unavailable dependencies" => ["jboss.persistenceunit.\"ejbmavendemo-1.0-SNAPSHOT.jar#myapp\"jboss.naming.context.java.MySqlDSMissing[jboss.persistenceunit.\"ejbmavendemo-1.0-SNAPSHOT.jar#myapp\"jboss.naming.context.java.MySqlDS]"]}}}
