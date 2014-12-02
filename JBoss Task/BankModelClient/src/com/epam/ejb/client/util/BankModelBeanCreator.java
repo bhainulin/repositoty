@@ -55,7 +55,7 @@ public class BankModelBeanCreator {
 	public static BankOperationExchange getBankOperationExcange()
 			throws NamingException, IOException {
 		return (BankOperationExchange) getContext()
-				.lookup("ejbTask1-2.0-SNAPSHOT/BankOperationExchangeBean!com.epam.bank.session.BankOperationExchangeLocal");
+				.lookup("ejbTask1-2.0-SNAPSHOT/BankOperationExchangeBean!com.epam.bank.session.BankOperationExchange");
 	}
 
 	public static BankOperationTransfer getBankOperationTransfer()

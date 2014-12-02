@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,14 +21,16 @@ public class Currency implements Serializable {
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "from", nullable = false)
-	private CurrencyShortName from;
-	
-	@Column(name = "to", nullable = false)
-	private CurrencyShortName to;
-	
 	@Column(name = "bankId", nullable = false)
 	private int bankId;
+	
+	@Column(name = "fromC", nullable = false)
+	@Enumerated(EnumType.STRING)
+	private CurrencyShortName from;
+	
+	@Column(name = "toC", nullable = false)
+	@Enumerated(EnumType.STRING)
+	private CurrencyShortName to;
 	
 	@Column(name = "cost", nullable = false)
 	private double cost;
@@ -36,7 +40,6 @@ public class Currency implements Serializable {
 
 	public Currency(int id, CurrencyShortName from, CurrencyShortName to,
 			int bankId, double cost) {
-		super();
 		this.id = id;
 		this.from = from;
 		this.to = to;

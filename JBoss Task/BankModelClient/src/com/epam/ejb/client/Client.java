@@ -4,10 +4,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.ejb.EJBException;
 import javax.naming.NamingException;
 
-import com.epam.bank.exceptions.IncorrectParametersException;
-import com.epam.bank.exceptions.MissingParametersException;
 import com.epam.bank.model.Account;
 import com.epam.bank.model.Bank;
 import com.epam.bank.model.Currency;
@@ -110,7 +109,13 @@ public class Client {
 
 		account.setPersonId(personId);
 		account.setBankId(bankId);
-		account.setCurrency(CurrencyShortName.valueOf(curr));
+		try {
+			account.setCurrency(CurrencyShortName.valueOf(curr));
+		} catch (Exception e) {
+			System.out.println("Cannot be added!");
+			System.out.println(e.getMessage());
+			return null;
+		}
 		account.setAmount(city);
 
 		return account;
@@ -127,8 +132,14 @@ public class Client {
 		double cost = sc.nextDouble();
 
 		currency.setBankId(bankId);
-		currency.setFrom(CurrencyShortName.valueOf(from));
-		currency.setTo(CurrencyShortName.valueOf(to));
+		try {
+			currency.setFrom(CurrencyShortName.valueOf(from));
+			currency.setTo(CurrencyShortName.valueOf(to));
+		} catch (Exception e) {
+			System.out.println("Cannot be added.");
+			System.out.println(e.getMessage());
+			return null;
+		}
 		currency.setCost(cost);
 
 		return currency;
@@ -252,7 +263,13 @@ public class Client {
 			case 3:
 				Currency currency = new Currency();
 				currency = addCurrency(sc, currency);
-				helper.add(currency);
+				if (currency != null) {
+					try {
+						helper.add(currency);
+					} catch (Exception e) {
+						System.out.println("Cannot be added!");
+					}
+				}
 			}
 		}
 	}
@@ -278,7 +295,13 @@ public class Client {
 			case 3:
 				Account account = new Account();
 				account = addAccount(sc, account);
-				helper.add(account);
+				if (account != null) {
+					try {
+						helper.add(account);
+					} catch (Exception e) {
+						System.out.println("Cannot be added!");
+					}
+				}
 			}
 		}
 	}
@@ -310,11 +333,11 @@ public class Client {
 			accountHelper.update(account);
 
 			System.out.println("Succesfully exchanged!");
-		} catch (MissingParametersException | IncorrectParametersException e) {
+		} catch (EJBException e) {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
 	public static void transfer(Scanner sc) throws NamingException, IOException {
 
 		AccountManagerEntityHelper accountHelper = EntityManagerHelper
@@ -338,12 +361,13 @@ public class Client {
 				BankModelBeanCreator.getBankOperationTransfer());
 
 		try {
-			List<Account> accounts = func.transfer(accountHelper.get(from), accountHelper.get(to), currencyHelper.get(currencyId));
+			List<Account> accounts = func.transfer(accountHelper.get(from),
+					accountHelper.get(to), currencyHelper.get(currencyId));
 			accountHelper.update(accounts.get(0));
 			accountHelper.update(accounts.get(1));
 
 			System.out.println("Succesfully transfered!");
-		} catch (MissingParametersException | IncorrectParametersException e) {
+		} catch (EJBException e) {
 			System.out.println(e.getMessage());
 		}
 	}

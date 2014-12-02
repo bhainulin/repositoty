@@ -40,7 +40,7 @@ public class Bank implements Serializable {
 	private int buildig;
 
 	@Column(name = "office", nullable = true)
-	private int office;
+	private Integer office;
 
 	@Column(name = "phone", nullable = true)
 	private String phone;
@@ -62,7 +62,7 @@ public class Bank implements Serializable {
 	}
 
 	public Bank(int id, String name, String city, String street, int buildig,
-			int office, String phone) {
+			Integer office, String phone) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -109,11 +109,11 @@ public class Bank implements Serializable {
 		this.buildig = buildig;
 	}
 
-	public int getOffice() {
+	public Integer getOffice() {
 		return office;
 	}
 
-	public void setOffice(int office) {
+	public void setOffice(Integer office) {
 		this.office = office;
 	}
 
@@ -140,7 +140,7 @@ public class Bank implements Serializable {
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + office;
+		result = prime * result + ((office == null) ? 0 : office.hashCode());
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
 		result = prime * result + ((street == null) ? 0 : street.hashCode());
 		return result;
