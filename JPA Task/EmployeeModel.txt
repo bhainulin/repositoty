@@ -1,0 +1,65 @@
+CREATE TABLE `work`.`tblunit` (
+  `id` INT NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
+  `code` VARCHAR(10) NOT NULL,
+  PRIMARY KEY (`id`));
+  
+ALTER TABLE `work`.`tblunit` 
+CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT ;
+
+CREATE TABLE `work`.`tblproject` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`));
+  
+CREATE TABLE `work`.`tblemployee` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `first` VARCHAR(45) NOT NULL,
+  `last` VARCHAR(45) NOT NULL,
+  `middle` VARCHAR(45) NULL,
+  `status` VARCHAR(45) NOT NULL,
+  `city` VARCHAR(45) NULL,
+  `country` VARCHAR(45) NULL,
+  `street` VARCHAR(45) NULL,
+  `zip` VARCHAR(45) NULL,
+  `unitId` INT(11) NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  CONSTRAINT `FK_unit`
+    FOREIGN KEY (`unitId`)
+    REFERENCES `work`.`tblunit` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+    INDEX `FK_unit_idx` (`unitId` ASC));
+	
+CREATE TABLE `work`.`tblpersonal` (
+  `id` INT NOT NULL,
+  `gender` INT NOT NULL DEFAULT 0,
+  `phone` VARCHAR(45) NULL,
+  `ssn` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `FK_Employee`
+    FOREIGN KEY (`id`)
+    REFERENCES `work`.`tblemployee` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+	
+CREATE TABLE `work`.`tblemployee_project` (
+  `employeeId` INT NOT NULL,
+  `projectId` INT NOT NULL,
+  PRIMARY KEY (`employeeId`, `projectId`));
+ALTER TABLE `work`.`tblemployee_project` 
+ADD INDEX `FK_employeeproject_project_idx` (`projectId` ASC);
+ALTER TABLE `work`.`tblemployee_project` 
+ADD CONSTRAINT `FK_employeeproject_employee`
+  FOREIGN KEY (`employeeId`)
+  REFERENCES `work`.`tblemployee` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `FK_employeeproject_project`
+  FOREIGN KEY (`projectId`)
+  REFERENCES `work`.`tblproject` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+
