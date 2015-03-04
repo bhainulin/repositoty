@@ -1,0 +1,13 @@
+CREATE SCHEMA `newsagency` ;
+
+CREATE TABLE `newsagency`.`news` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(100) NOT NULL,
+  `content` VARCHAR(4000) NOT NULL,
+  `author` VARCHAR(45) NULL,
+  `created` DATETIME NULL,
+  `updated` DATETIME NULL,
+  PRIMARY KEY (`id`));
+
+ALTER TABLE `newsagency`.`news` 
+CHANGE COLUMN `created` `created` DATETIME NULL DEFAULT NOW() ;

@@ -1,0 +1,6 @@
+com\epam\cdp\entity\News.class
+com\epam\cdp\service\INewsService.class
+com\epam\cdp\service\NewsServiceImpl.class
+com\epam\cdp\dao\INewsDao.class
+com\epam\cdp\controller\NewsAgency.class
+com\epam\cdp\dao\NewsDaoImpl.class

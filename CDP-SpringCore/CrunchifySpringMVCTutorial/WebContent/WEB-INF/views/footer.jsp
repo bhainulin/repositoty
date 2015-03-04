@@ -1,0 +1,1 @@
+<h2>All rights reserved, 2015</h2>

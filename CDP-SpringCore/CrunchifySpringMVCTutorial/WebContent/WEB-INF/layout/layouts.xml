@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tiles-definitions>
+	<definition name="DefaultTemplate" template="/WEB-INF/views/SiteTemplate.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
+	</definition>
+	<definition name="create" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/create.jsp" />
+	</definition>
+	<definition name="edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/edit.jsp" />
+	</definition>
+	<definition name="news" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/news.jsp" />
+	</definition>
+	<definition name="view" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/view.jsp" />
+	</definition>
+</tiles-definitions>
